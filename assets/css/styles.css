@@ -1,0 +1,396 @@
+*{
+	font-family: 'Roboto Condensed', sans-serif;
+	text-decoration: none;
+    color: #eee;
+    list-style: none;
+	padding:0px;
+	margin:0px;
+	box-sizing: border-box;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-smoothing: antialiased;
+}
+
+body,html{
+	width:100vw;
+	height:100vh;
+	overflow-x: hidden;
+	vertical-align: middle;
+}
+.card {
+  background: #E6660B;	
+  width: 200px;
+  position: fixed;	
+  text-align: right;
+  top: 20px;
+  left: 20px;
+  z-index:100;
+}
+
+.card-container{
+	padding:10px;
+}
+
+.footer{
+	width:100%;
+    padding:2px 0px;
+}
+
+.title {
+  color: grey;
+  font-size: 18px;
+}
+
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+.nav {
+  text-decoration: none;
+  margin:0px 10px;
+}
+
+#picture{
+	
+    width:100%;
+    height:250px;
+    background:url('../../images/dp.jpg') top no-repeat no-repeat;
+    -webkit-background-size:cover;
+    background-size:cover;
+}
+
+/*https://avatars2.githubusercontent.com/u/20627760?v=4&s=460*/
+
+
+i,a{
+	color: #fff;
+}
+
+ul.cardNav li{
+	width:100%;
+    padding:8px 0px;
+    border-bottom: 2px #eee dotted;
+}
+
+button:hover, a.nav:hover {
+  opacity: 0.7;
+}
+
+.fullpage{
+	width:100%;
+	height:100%;
+	background: #eee;
+	display:block;
+	position:relative;
+	clear:left;
+}
+
+.content_container{
+	padding:40px 80px 10px 260px;
+	height:100%;
+	background:rgba(0,0,0,0.6);
+}
+
+#introduction{
+	background: url('../../images/forest.jpg') center no-repeat no-repeat fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	background-size: cover;
+	z-index:1;
+}
+
+h1{
+	font-size: 52px;
+	font-weight: 300;
+}
+
+h5{
+	font-size: 18px;
+}
+h6{
+	font-size: 16px;
+	font-weight: 300;
+}
+h5{
+	
+	font-weight: 600;
+}
+
+b,strong{
+	font-weight: 900;
+}
+
+.container_name{
+	position:relative;
+	top:60%;
+}
+
+.btn{
+	position: relative;
+    top: 30px;
+	padding: 8px;
+	border: 2px #E6660B solid;
+	transition: all 0.2s linear;
+}
+
+.btn:hover{
+	background:#E6660B;
+}
+
+#msg{
+	width:50px;
+	height:50px;
+	border-radius: 50%;
+	position:absolute;
+	bottom: 50px;
+	right: 50px;
+	background:#eee;
+	box-shadow: 0px 4px 9px #333;
+	text-align:center;
+	vertical-align:middle;
+	font-size:18px;	
+	z-index:10000;
+}
+
+.primary{
+	color:#E6660B;
+}
+
+.dark{
+	color:#222;
+}
+.primary-bg{
+	background-color:#E6660B;
+}
+
+.msg{
+	position:relative;
+	top:14px;
+}
+
+.faded-b-50 {
+    margin-bottom: 30px!important;
+}
+.skill{
+	margin-bottom: 18px;
+}
+.progress{
+	-webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    height: 5px;
+    margin-bottom: 10px;
+    background-color: #f1f1f1;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    overflow: visible;
+}
+.progress-bar{
+	margin-left: -1px;
+    text-align: right;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    font-weight: 500;
+    box-shadow: none;
+}
+.progress-bar>span {
+    position: relative;
+    top: -8px;
+    display: inline-block;
+    padding: 0 10px;
+    font-size: 11px;
+    border-radius: 15px;
+    color: #fff;
+    background-color: inherit;
+}
+
+.padded_container{
+	padding:40px 80px 10px 260px;
+}
+
+.b0{
+	margin-bottom:0px !important;
+}
+.speciality {
+    padding: 6px 0;
+    border-bottom: 1px solid #eaeaea;
+}
+.speciality-icon {
+    top: -2px;
+    float: left;
+    font-size: 36px;
+}
+.speciality-content {
+    padding-top: 3px;
+    padding-left: 66px;
+}
+.speciaity-description {
+    color: #757575;
+    margin-bottom: 0;
+    font-size: 12px;
+}
+.icon{
+	font-size: 62px;
+	color: #E6660B;
+}
+
+.timeline {
+    border-left: 1px solid #eaeaea;
+    padding: 10px 0px 0px 0px;
+	position:relative;
+}
+.timeline-event {
+    padding-left: 30px;
+    padding-bottom: 2px;
+	position:relative;
+}
+.event-date {
+    font-weight: 500;
+    font-size: 11px;
+    margin-bottom: 15px;
+}
+.timeline-event:before {
+    position: absolute;
+    top: 0;
+    left: -9px;
+    width: 7px;
+    height: 7px;
+    border: 5px solid #fff;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    content: " ";
+	background-color:#E6660B;
+}
+.timeline-event>*{
+	display:block;
+}
+.event-name {
+    font-weight: 500;
+    font-size: 14px;
+}
+.event-description {
+    font-size: 11px;
+    color: #757575;
+}
+.fill{
+	width:100%;
+}
+.row-fill{
+	width: 100%;
+	position:relative;
+	display:block;
+	float:left;
+}
+
+.text-center{
+	text-align:center;
+}
+
+.nav-pills>li {
+    display: inline-block;
+    float: none;
+}
+
+#portfolio{
+	background:url('https://wallpaperscraft.com/image/laptop_apple_canon_table_73452_1920x1080.jpg') center no-repeat no-repeat fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	background-size: cover;
+}
+.nav-pills>li+li {
+    margin-left: 2px;
+}
+
+.columns {
+	position: relative;
+	-moz-column-count: 5;
+	-webkit-column-count: 5;
+	column-count: 5;
+	-moz-column-gap: 1em;
+	-webkit-column-gap: 1em;
+	column-gap: 1em;
+}
+	
+.columns .image {
+			position: relative;
+			display: inline-block;
+			margin: 0 0 .5em;
+			width: 100%;
+			overflow: hidden;
+		}
+
+.columns .image img {
+	-moz-transition: -moz-transform 0.2s ease-in-out;
+	-webkit-transition: -webkit-transform 0.2s ease-in-out;
+	-ms-transition: -ms-transform 0.2s ease-in-out;
+	transition: transform 0.2s ease-in-out;
+	-webkit-backface-visibility: hidden;
+	-webkit-transform: translate3D(0, 0, 0);
+}
+
+.columns .image:hover img {
+	-moz-transform: scale(1.1);
+	-webkit-transform: scale(1.1);
+	-ms-transform: scale(1.1);
+	transform: scale(1.1);
+}	
+
+.image.fit img {
+    width: 100%;
+	height: auto;
+	display:block;
+}
+
+.columns .image:hover .mask{
+	width: 100%;
+	height:100%;
+}
+.mask{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color:rgba(230,102,11,0.5);
+  overflow: hidden;
+  width: 0;
+  height: 0;
+  transition: .1s ease;
+  z-index:10;
+  text-align:center;
+}
+
+.mask a {
+	position:relative;
+	top:50%;
+	margin-top:-50px;
+	background:#111;
+	padding:5px;
+	border-radius:50%;
+	opacity: 0.5;
+}
+
+.mask a:hover {
+	opacity: 1;
+}
+
+.item img{
+	width: 100%;
+}
+
+#certifications{
+	background:#362315;
+}
