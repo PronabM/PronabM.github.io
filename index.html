@@ -14,20 +14,20 @@
 <div id="picture"></div>
 <div class="card-container">
   <ul class="cardNav">
-  <li><a href="#introduction">Start</a></li>
-  <li><a href="#resume">Resume</a></li>
-  <li><a href="#portfolio">Portfolio</a></li>
-  <li><a href="#certifications">Testimonials</a></li>
-  <li><a href="#">Blog</a></li>
-  <li><a href="#contact">Contact</a></li>
+  <li><a class="ss" href="#introduction">Start</a></li>
+  <li><a class="ss" href="#resume">Resume</a></li>
+  <li><a class="ss" href="#portfolio">Portfolio</a></li>
+  <li><a class="ss" href="#certifications">Certifications</a></li>
+  <li><a href="http://meanpile.000webhostapp.com/" target="_blank">Blog</a></li>
+  <li><a class="ss" href="#contact">Contact</a></li>
   </ul>
 
   <div style="margin: 20px 0;text-align:center;">
 	Follow Me&nbsp;
-    <a href="#"><i class="fa fa-google-plus"></i></a>
-    <a href="#"><i class="fa fa-linkedin"></i></a>
-    <a href="#"><i class="fa fa-facebook"></i></a>
-	<a href="#"><i class="fa fa-github"></i></a>
+    <a href="https://plus.google.com/u/2/115349505954353765735"><i class="fa fa-google-plus"></i></a>
+    <a href="https://www.linkedin.com/in/pronabm/"><i class="fa fa-linkedin"></i></a>
+    <a href="https://www.facebook.com/profile.php?id=100008242264696"><i class="fa fa-facebook"></i></a>
+	<a href="https://github.com/PronabM"><i class="fa fa-github"></i></a>
  </div>
    </div>
 
@@ -45,8 +45,8 @@
 		<div class="container_name">
 			<h1>Hi! I'm <strong>Pronab Mukherjee</strong></h1>
 			<h5 class="primary">Undergraduate Student | Web-developer</h5>
-			<a href="#" class="btn">Go to My Resume</a>
-			<a href="#" class="btn">Download My Resume</a>
+			<a href="#resume" class="btn ss">Go to My Resume</a>
+			<a href="resume.pdf" class="btn" target="_blank">Download My Resume</a>
 		</div>
 	</div>
 </div>
@@ -390,7 +390,7 @@
 
   $(document).ready(function(){
     // Add smooth scrolling to all links
-    $("ul.cardNav li a").on('click', function(event) {
+    $("a.ss").on('click', function(event) {
 
       // Make sure this.hash has a value before overriding default behavior
       if (this.hash !== "") {
