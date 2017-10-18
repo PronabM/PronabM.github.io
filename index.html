@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
+<title>Pronab Mukherjee | Undergraduate Student Developer</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet"/>
@@ -399,12 +400,12 @@
 
         // Store hash
         var hash = this.hash;
-        console.log(hash);
+        console.log($(hash).offset().top + $('body').scrollTop());
         // Using jQuery's animate() method to add smooth page scroll
         // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
-        $('html, body').animate({
-          scrollTop: $(hash).offset().top
-        }, 800
+        $('body').animate({
+          scrollTop: $(hash).offset().top + $('body').scrollTop()
+        }, 1200
       );
   } // End if
 });
