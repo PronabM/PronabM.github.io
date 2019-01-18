@@ -1,0 +1,614 @@
+
+<!DOCTYPE html>
+
+<html>
+
+ 
+
+  <head>
+
+    <title>ScoreKeeper</title>
+
+    <meta charset="UTF-8">
+
+    <meta name="description" content="ScoreKeeper for Championship">
+
+    <meta name="keywords" content="Fifa,Game,Championship">
+
+    <meta name="author" content="Pronab Mukherjee">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">          
+
+    <link rel="stylesheet" href="css/main.css" />
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+  </head>
+
+ 
+
+  <body>
+
+    <div class="container-fluid" id="site-wrapper">
+
+            <form class="form-horizontal" id="dd">
+
+                <input type="text" class="form-control" id="T0" placeholder="Player 1" required />
+
+                <input type="text" class="form-control" id="T1" placeholder="Player 2" required />
+
+                <input type="text" class="form-control" id="T2" placeholder="Player 3" required />
+
+                <input type="text" class="form-control" id="T3" placeholder="Player 4" required />
+				
+				<input type="text" class="form-control" id="T4" placeholder="Player 5" required />
+
+               <br>
+
+                <a ><i class="fa fa-futbol" style="font-size:28px;color:#efefef;" onclick="CreateTeams();"></i></a>
+
+            </form>
+
+            <br>
+
+    </div>
+
+ 
+
+    <div class="container-fluid" id="content">
+
+    </div>          
+
+ 
+
+   <script>
+
+            function Team(Name,TeamName,TeamLogo) {
+
+              this.Player = Name;
+
+              this.MP = 0;
+
+              this.W = 0;
+
+              this.D = 0;
+
+              this.L = 0;
+
+              this.GF = 0;
+
+              this.GA = 0;
+
+              this.GD = 0;
+
+              this.PTS = 0;
+
+              this.TeamName = TeamName;
+
+              this.TeamLogo = TeamLogo;  
+
+            }
+
+ 
+
+            function UpdateScore()
+
+            {
+
+              refresh();
+
+          for(var i=0; i<fixtures.length; i++)
+
+              {        
+
+                  if(!document.getElementById('sc'+i+'H').disabled)
+
+                        continue;
+
+                  console.log("Entered!");                                         
+
+                  var v1 = document.getElementById('sc'+i+'H').value;
+
+                  var v2 = document.getElementById('sc'+i+'A').value;
+
+ 
+
+                  console.log(v1,v2); 
+
+ 
+
+                  if(v1>v2)
+
+                  {
+
+                        teams[parseInt(document.getElementById('sc'+i+'H').attributes.getNamedItem("max-length").value)].W+=1;
+
+                        teams[parseInt(document.getElementById('sc'+i+'H').attributes.getNamedItem("max-length").value)].PTS+=3;
+
+                        teams[parseInt(document.getElementById('sc'+i+'A').attributes.getNamedItem("max-length").value)].L+=1;
+
+                  }
+
+ 
+
+                  else if(v1<v2)
+
+                  {
+
+                        teams[parseInt(document.getElementById('sc'+i+'A').attributes.getNamedItem("max-length").value)].W+=1;
+
+                        teams[parseInt(document.getElementById('sc'+i+'A').attributes.getNamedItem("max-length").value)].PTS+=3;
+
+                teams[parseInt(document.getElementById('sc'+i+'H').attributes.getNamedItem("max-length").value)].L+=1;
+
+                  }
+
+ 
+
+                  else
+
+                  {
+
+                        teams[parseInt(document.getElementById('sc'+i+'H').attributes.getNamedItem("max-length").value)].D+=1;
+
+                       teams[parseInt(document.getElementById('sc'+i+'H').attributes.getNamedItem("max-length").value)].PTS+=1;
+
+                teams[parseInt(document.getElementById('sc'+i+'A').attributes.getNamedItem("max-length").value)].D+=1;
+
+                        teams[parseInt(document.getElementById('sc'+i+'A').attributes.getNamedItem("max-length").value)].PTS+=1;                       
+
+                  }
+
+                 
+
+              teams[parseInt(document.getElementById('sc'+i+'H').attributes.getNamedItem("max-length").value)].MP+=1;
+
+                  teams[parseInt(document.getElementById('sc'+i+'H').attributes.getNamedItem("max-length").value)].GF+=parseInt(v1);
+
+              teams[parseInt(document.getElementById('sc'+i+'H').attributes.getNamedItem("max-length").value)].GA+=parseInt(v2);
+
+                  teams[parseInt(document.getElementById('sc'+i+'H').attributes.getNamedItem("max-length").value)].GD+=parseInt(v1-v2);
+
+ 
+
+                 
+
+              teams[parseInt(document.getElementById('sc'+i+'A').attributes.getNamedItem("max-length").value)].MP+=1;
+
+                  teams[parseInt(document.getElementById('sc'+i+'A').attributes.getNamedItem("max-length").value)].GF+=parseInt(v2);
+
+              teams[parseInt(document.getElementById('sc'+i+'A').attributes.getNamedItem("max-length").value)].GA+=parseInt(v1);
+
+                  teams[parseInt(document.getElementById('sc'+i+'A').attributes.getNamedItem("max-length").value)].GD+=parseInt(v2-v1);    
+
+              
+
+                  
+
+                  }
+
+              
+
+              UpdateSBoard();
+
+              populateTable();                     
+
+            }
+
+ 
+
+            function CreateTeams()
+
+            {
+
+                        if(!draw)
+
+                        {       
+
+                                    var players = new Array();
+
+                                                    for (var i=0;i<5;i++)
+
+                                                    {
+
+                                                            players[i] = document.getElementById("T"+i).value;
+
+                                    }
+
+                                   
+
+                                    players = shuffle(players);
+
+                                                      
+
+                                    teams[0] = new Team(players[0],'Brazil','http://icons.iconarchive.com/icons/giannis-zographos/south-american-football-club/128/Brazil-icon.png');                   
+
+                                    teams[1] = new Team(players[1],'England','http://img.skysports.com/football/badges/128/6.png');
+
+                                    teams[2] = new Team(players[2],'France','http://aux.iconspalace.com/uploads/france-logo-icon-128.png');
+
+                                    teams[3] = new Team(players[3],'Belgium','http://icons.iconarchive.com/icons/giannis-zographos/world-cup-2014/128/Belgium-icon.png');
+
+									teams[4] = new Team(players[4],'Portugal','http://files.softicons.com/download/sport-icons/world-cup-2014-icons-by-giannis-zographos/png/128x128/Portugal.png');
+
+ 
+
+                                    fteams = JSON.parse(JSON.stringify(teams));;
+
+                                    //refresh();
+
+                                   writeStruct();
+
+                                    populateFixtures();       
+
+                                    populateTable();
+
+                                    draw = true;
+
+ 
+
+                                   
+
+                        }
+
+            }
+
+ 
+
+            function writeStruct()
+
+            {
+
+                        document.getElementById("content").innerHTML += '<br><div class="col-md-6"><div class="ec-fancy-title"><h2>League Table</h2></div><table class="table" id="sTable"></table></div>';
+
+                        document.getElementById("content").innerHTML += '<br><div class="col-md-6"><div class="ec-fancy-title"><h2>Match Fixture</h2></div><div class="ec-latest-result-wrap" id="fixtures"></div>';
+
+            }
+
+ 
+
+            function populateTable()
+
+            {
+
+                        var header = "<tr><th>Player</th><th>MP</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>Pts</th></tr>";
+
+                        var s = ""
+
+                        for(var i=0;i<teams.length;i++)
+
+                        {
+
+                            if(i<2)
+
+                                    s = '<tr class="info">';
+
+                            else
+
+                                    s = "<tr>";
+
+ 
+
+                            s+= "<td>"+teams[i].Player+"</td>";
+
+                            s+= "<td>"+teams[i].MP+"</td>";
+
+                            s+= "<td>"+teams[i].W+"</td>";
+
+                            s+= "<td>"+teams[i].D+"</td>";
+
+                            s+= "<td>"+teams[i].L+"</td>";
+
+                            s+= "<td>"+teams[i].GF+"</td>";
+
+                            s+= "<td>"+teams[i].GA+"</td>";
+
+                            s+= "<td>"+teams[i].GD+"</td>";
+
+                            s+= "<td>"+teams[i].PTS+"</td>";
+
+                            s+= "</tr>";
+
+ 
+
+                            header += s;
+
+                                       
+
+                        }
+
+                        document.getElementById("sTable").innerHTML = header;
+
+            }
+
+ 
+
+ 
+
+            function UpdateSBoard(){
+
+ 
+
+             teams.sort(function(a, b){
+
+                        if(a.PTS !== b.PTS)
+
+                            return b.PTS-a.PTS;
+
+                        else if (a.GD !== b.GD)
+
+                            return b.GD - a.GD;
+
+                        else if (a.GF !== b.GF)
+
+                            return b.GF - a.GF;
+
+                        else if (a.MP !== b.MP)
+
+                            return a.MP - b.MP;
+
+              });
+
+ 
+
+              //teams.sort(dynamicSortMultiple("-GD","-GD","-GF","MP","Player"));
+
+              console.log(teams);    
+
+            }
+
+ 
+
+            function shuffle(array)
+
+            {
+
+                        var currentIndex = array.length, temporaryValue, randomIndex;
+
+                        while (0 !== currentIndex)
+
+                        {
+
+                                    randomIndex = Math.floor(Math.random() * currentIndex);
+
+                                    currentIndex -= 1;
+
+                                    temporaryValue = array[currentIndex];
+
+                                    array[currentIndex] = array[randomIndex];
+
+                                    array[randomIndex] = temporaryValue;
+
+                        }
+
+ 
+
+                       return array;
+
+            }          
+
+ 
+
+            function Fixture(a,b)
+
+            {
+
+                        this.home=a;
+
+                        this.away=b;
+
+            }
+
+ 
+
+ 
+
+            function writeFixtures()
+
+            {
+
+                        var fin = "";
+
+                        for(var i=0;i<fixtures.length;i++)
+
+                        {
+
+                                    var home = fixtures[i].home;
+
+                                    var away = fixtures[i].away;
+
+ 
+
+                                    var str = '<div class="ec-latest-result"><ul><li>';
+
+                                    str += "<span>"+ teams[home].TeamName +"</span>";
+
+                                    str += '<img src="'+ teams[home].TeamLogo +'" alt="">';
+
+                                    str += '<span>'+ teams[home].Player +'</span></li>';
+
+ 
+
+                                    str += '<li><div class="ec-result-time"><div class="ec-time-wrap"><form>';
+
+                                    str += '<input type="text" value="0" class = "ScoreNumber" id="sc'+i+'H" max-length='+home+'></input>';
+
+                                    str += '<a ><i class="fa fa-lock" style="font-size:28px;" onclick="toggleIP(this,'+i+');"></i></a>';
+
+                                    str += '<input type="text" value="0" class = "ScoreNumber" id="sc'+i+'A" max-length='+away+'></input>';
+
+                                    str += '</form></div></div></li><li>';
+
+                                   
+
+                                    str += "<span>"+ teams[away].TeamName +"</span>";
+
+                                    str += '<img src="'+ teams[away].TeamLogo +'" alt="">';
+
+                                    str += '<span>'+ teams[away].Player +'</span></li>';
+
+ 
+
+                                    str += '</ul></div></ul></div>';
+
+ 
+
+                                    fin += str;
+
+ 
+
+                        }
+
+                        document.getElementById('fixtures').innerHTML = fin;    
+
+            }
+
+ 
+
+            function toggleIP(e,id)
+
+            {
+
+                        document.getElementById("sc"+id+"H").disabled = !document.getElementById("sc"+id+"H").disabled;
+
+                        document.getElementById("sc"+id+"A").disabled = !document.getElementById("sc"+id+"A").disabled;
+
+						e.classList.toggle("locked");
+
+                        UpdateScore();
+
+            }
+
+ 
+
+ 
+
+            function populateFixtures()
+
+            {
+
+                        var k = 0;
+
+                        for(var i=0;i<teams.length;i++)
+
+                        {
+
+                                    for(var j=i+1;j<teams.length;j++)
+
+                                    {
+
+                                                fixtures[k] = new Fixture(i,j);
+
+                                                k++;
+												
+												fixtures[k] = new Fixture(j,i);
+												
+												k++;
+
+                                    }
+
+                        }
+
+                        fixtures = shuffle(fixtures);//.concat(fixtures));
+
+                        console.log(fixtures);
+
+ 
+
+                        writeFixtures();
+
+            }
+
+ 
+
+                function dynamicSort(property) {
+
+    var sortOrder = 1;
+
+    if(property[0] === "-") {
+
+        sortOrder = -1;
+
+        property = property.substr(1);
+
+    }
+
+    return function (a,b) {
+
+        var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+
+        return result * sortOrder;
+
+    }
+
+}
+
+ 
+
+            function refresh()
+
+            {
+
+                        for(var i=0;i<5;i++)
+
+                        {
+
+                                    teams[i].MP = 0;
+
+                                    teams[i].W = 0;
+
+                                    teams[i].L = 0;
+
+                                   
+
+                                    teams[i].D = 0;
+
+                                    teams[i].GF = 0;
+
+                                    teams[i].GA = 0;
+
+ 
+
+ 
+
+                                    teams[i].GD = 0;
+
+                                    teams[i].PTS = 0;
+
+ 
+
+                        }
+
+                                    //teams.sort(dynamicSort("Player"));
+
+                                    teams = JSON.parse(JSON.stringify(fteams));
+
+                                    console.log(teams);
+
+                                    console.log("^ After Refresh");
+
+            }
+
+           
+
+            var draw = false;
+
+            var teams = new Array();
+
+            var fteams = new Array();
+
+            fixtures = new Array();
+
+ 
+
+   </script>       
+
+  
+
+  </body>        
+
+ 
+
+</html>

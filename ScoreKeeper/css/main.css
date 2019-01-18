@@ -1,0 +1,433 @@
+* {
+
+    margin: 0px;
+
+    padding: 0px;
+
+    box-sizing: border-box;
+
+}
+
+ 
+
+html,body{
+
+            height:100%;
+
+}
+
+ 
+.locked{
+	color:red;
+}
+#site-wrapper{
+
+    background:url('https://tackle.ro/wp-content/uploads/World-Cup-2018-background.png');
+
+    background-repeat: no-repeat;
+
+    background-size: cover;           
+
+    height:100%;
+
+    display:block;
+
+    background-position: center;
+
+    z-index: -999;
+
+}
+
+ 
+
+#dd {
+
+            margin: 300px 10%;
+
+            padding: 5% 30px;
+
+            background: rgba(0,0,0,0.5);
+
+            text-align:center;
+
+        z-index: -999;
+
+}
+
+ 
+
+.col-md-6 {
+
+    width: 100%;
+
+    display: block;
+
+    float: left;                 
+
+}
+
+ 
+
+.ec-fancy-title {
+
+    float: left;     
+
+    width: 100%;
+
+    background: url('img/transparent-pattren.png');
+
+    background-color: rgba(0, 0, 0, 0);
+
+    background-color: #434343;
+
+    position: relative;
+
+}
+
+ 
+
+.ec-fancy-title::after {
+
+    content: '';
+
+    position: absolute;
+
+    left: 0px;
+
+    bottom: -3px;           
+
+    width: 100%;
+
+    height: 5px;
+
+    background: #3668ca;
+
+    background: -moz-linear-gradient(left, #3668ca 50%, #e4b83d 0%);
+
+    background: -webkit-linear-gradient(left, #3668ca 50%,#e4b83d 0%);
+
+    background: linear-gradient(to right, #3668ca 50%,#e4b83d 0%);
+
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3668ca', endColorstr='#e4b83d',GradientType=1 );
+
+}
+
+ 
+
+.ec-fancy-title h2 {
+
+    color: #fff;
+
+    margin: 0px;
+
+    padding: 7px 15px 9px 15px;
+
+    float: left;
+
+}
+
+ 
+
+body h1, body h2, body h3, body h4, body h5, body h6 {
+
+    color: #333333;
+
+    font-family: 'Oswald', sans-serif;
+
+    font-style: normal;
+
+    font-weight: normal;
+
+    letter-spacing: 0px;
+
+    line-height: 1.5;
+
+    margin: 0px 0px 8px 0px;
+
+    text-transform: uppercase;
+
+}
+
+ 
+
+.ec-latest-result-wrap {
+
+    float: left;
+
+    width: 100%;
+
+    margin-bottom: 60px;
+
+}
+
+ 
+
+.ec-latest-result {
+
+    display: table;
+
+    width: 100%;
+
+    padding: 35px 0px 42px 0px;
+
+    background-color: #fff;
+
+    border: 1px solid #f3f3f3;
+
+}
+
+ 
+
+.ec-latest-result ul {
+
+    display: table-row;
+
+    width: 100%;
+
+    position: relative;
+
+}
+
+ 
+
+.ec-latest-result ul li {
+
+    display: table-cell;
+
+    vertical-align: middle;
+
+    list-style: none;
+
+    width: 33.333%;
+
+    text-align: center;
+
+}
+
+ 
+
+li {
+
+    line-height: 28px;
+
+    list-style: disc inside none;
+
+}
+
+ 
+
+.ec-latest-result ul li span {
+
+    display: block;
+
+    font-size: 18px;
+
+    font-weight: 500;
+
+    color: #555555;
+
+}
+
+ 
+
+.ec-latest-result ul li img {
+
+   
+
+}
+
+ 
+
+img {
+
+    height: auto;
+
+    max-width: 100%;
+
+}
+
+ 
+
+img {
+
+    vertical-align: middle;
+
+}
+
+ 
+
+img {
+
+    border: 0;
+
+}
+
+ 
+
+.ec-result-time {
+
+ 
+
+    width: 160px;
+
+    height: 160px;
+
+    display: inline-block;
+
+    border-radius: 100%;
+
+    padding: 4px;
+
+ 
+
+}
+
+ 
+
+.ec-time-wrap {
+
+ 
+
+    background: url('img/transparent-pattren.png');
+
+        background-color: rgba(0, 0, 0, 0);
+
+    background-color: rgba(0, 0, 0, 0);
+
+    background-color: #4d4d4d;
+
+    display: inline-block;
+
+    width: 100%;
+
+    height: 100%;
+
+    border-radius: 100%;
+
+    font-size: 40px;
+
+    font-weight: 500;
+
+    color: #fff;
+
+    padding: 50px 6px 0px 6px;
+
+ 
+
+}
+
+ 
+
+.ScoreNumber {
+
+ 
+
+    display: inline-block;
+
+    Width: 35px;
+
+    text-align: center;
+
+    background: transparent;
+
+    border: 0px;
+
+    font-size: 40px;
+
+    font-weight: 500;
+
+    color: #fff;
+
+ 
+
+}
+
+ 
+
+.ec-skillst .skillbar {
+
+    width: 100%;
+
+    height: 2px;
+
+    background-color: #4e4e4e;
+
+    position: relative;
+
+}
+
+ 
+
+.ec-skillst .count-bar::before {
+
+    content: '';
+
+    position: absolute;
+
+    right: -3px;
+
+    top: -2px;
+
+    width: 6px;
+
+    height: 6px;
+
+   border-radius: 100%;
+
+}
+
+element {
+
+    width: 40%;
+
+}
+
+ 
+
+.ec-skillst .count-bar .count {
+
+    background-color: #4e4e4e;
+
+}
+
+.ec-skillst .count-bar .count {
+
+    position: absolute;
+
+    line-height: 30px;
+
+    top: -37px;
+
+    right: -16px;
+
+    width: 32px;
+
+    height: 28px;
+
+    font-size: 12px;
+
+    color: #fff;
+
+    text-align: center;
+
+}
+
+.ec-skillst .count-bar .count span::after {
+
+    position: absolute;
+
+    left: 50%;
+
+    margin-left: -4px;
+
+    bottom: -3px;
+
+    content: "";
+
+    border-left: 4px solid transparent;
+
+    border-right: 4px solid transparent;
+
+    border-top: 5px solid #4e4e4e;
+
+}
