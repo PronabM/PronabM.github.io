@@ -1,0 +1,141 @@
+* {
+	padding: 0px;
+	margin: 0px;
+	font-family: 'Oswald', sans-serif;
+}
+
+html,body,.wrapper {
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+}
+
+.fs {
+	height:100%;
+	width: 100%;
+}
+
+h1 {
+	font-family: 'Sacramento', cursive;
+	font-size: 50px;
+	color    : #eee;
+	padding-top: 48px;
+	padding-left: 16px;
+}
+
+.hidden {
+	display: none;
+}
+
+/* The container */
+.container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 22px;
+  width: 22px;
+  background-color: #555;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #444;
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #F05E23;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+ 	top: 6px;
+	left: 6px;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background: #555;
+}
+
+#question {
+	font-size: 1.5em;
+	color    : #ddd;
+	padding-bottom: 16px;
+	padding-top: 16px;
+}
+
+#Questionaire {
+	background-color: #333;
+}
+
+.checked{
+	color: #F05E23
+}
+
+#hat {
+	top:26px;
+	left:16px;
+	position: absolute;
+	width:50px;
+}
+
+
+.button{	
+	background-color: #F05E23;
+    border: none;
+    padding: 8px 16px;
+    margin: 16px 0px;
+    text-decoration: none;
+    color: #eee;
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+}
+
+#ProgressBar {
+	height: 8px;
+    position: absolute;
+    background-color: #F05E23;
+}
+
+label {
+	font-size: 16px !IMPORTANT;
+	color: #555;
+}
+#SurveyForm {
+	padding-left: 16px;
+}

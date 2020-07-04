@@ -1,1 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<title>Get Sorted!</title>
+		<meta name="description" content="Are you a high functioning Sociopath? Register Now!" />
+		<link rel="stylesheet" type="text/css" href="css/styles.css" />
+		<link rel="icon" href="sortinghat.png" type="image/png">
+		<link href="https://fonts.googleapis.com/css2?family=Oswald&family=Sacramento&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<div class="wrapper">
+			<div id="ProgressBar" style="width:6.67%;"></div>
+			<div id="Questionaire" class="fs">
+				<div class="fs-title">
+					<h1>Get Sorted!</h1>
+					<img src="sortinghat.png" id="hat">
+				</div>
+				<form id="SurveyForm" class="fs-form fs-form-full" autocomplete="off" action="#" method="POST">
+					<p id="question">Please select your age:</p>
+					<label class="container checked"><p id="lbl_one">One</p>
+					  <input id="btn_one" type="radio" checked="checked" name="radio" onclick="setChecked(this)">
+					  <span class="checkmark"></span>
+					</label><br>
+					<label class="container"><p id="lbl_two">Two</p>
+					  <input id="btn_two" type="radio" name="radio" onclick="setChecked(this)">
+					  <span class="checkmark"></span>
+					</label><br>
+					<label class="container"><p id="lbl_three">Three</p>
+					  <input id="btn_three" type="radio" name="radio" onclick="setChecked(this)">
+					  <span class="checkmark"></span>
+					</label><br>
+					<label class="container"><p id="lbl_four">Four</p>
+					  <input id="btn_four" type="radio" name="radio" onclick="setChecked(this)">
+					  <span class="checkmark"></span>
+					</label>
+					<a href="#" class="button" name="register" onclick="getNext(this)">Next</a>
+				</form><!-- /fs-form -->
+			</div><!-- /fs-form-wrap -->
+			
+			<div id="ResultList" class="fs hidden">
+				<center style="height: 100%;padding-top: 120px;">
+					<img src="" id="crest" style="width:240px;border-radius: 50%;">
+					<h2 id="result"></h2>
+					<p id="remarks"></p>
+				</center>
+			</div><!-- /fs-form-wrap -->
+		</div><!-- /container -->
+		<script>
+			Object.defineProperties(Array.prototype, {
+				count: {
+					value: function(value) {
+						return this.filter(x => x==value).length;
+					}
+				}
+			});
+			
+			function shuffle(array)
+			{
+				var currentIndex = array.length, temporaryValue, randomIndex;
+				while (0 !== currentIndex)
+				{
+							randomIndex = Math.floor(Math.random() * currentIndex);
+							currentIndex -= 1;
+							temporaryValue = array[currentIndex];
+							array[currentIndex] = array[randomIndex];
+							array[randomIndex] = temporaryValue;
+				}
+			   return array;
+			}
+			
+			function setChecked(item){
+				document.getElementsByClassName("checked")[0].className = "container";
+				item.parentElement.className += " checked";
+			}
+			
+			function getNext(item){
+				// Get the Value and save it.
+				if(index >= qCount)
+				{
+					var obj = confirm("Your result is ready, what about you?");
+				}
+				else
+				{
+					var options = document.getElementsByName('radio');
+					for(var i=0; i<options.length;i++)
+					{
+						if(options[i].checked)
+						{
+							var res = options[i].value.split("-");
+							for(var j=0; j<res.length;j++)
+								result.push(res[j]);
+							break;
+						}
+					}
+					// Update Index and Populate
+					index++;
+					if(index >= qCount)
+					{
+						var obj = confirm("Your result is ready, what about you?");
+						if(obj){
+							document.getElementById("Questionaire").className += " hidden";
+							document.getElementById("ResultList").className = "fs";
+							populateResult();
+						}
+					}
+					else{populate();}
+					// Update the ProgressBar
+					document.getElementById("ProgressBar").style = "width:"+(index+1)*6.67 +"%"
+				}
+				return false;
+			}
+			
+			function indexOfMax(arr) {
+				if (arr.length === 0) {
+					return -1;
+				}
+				var max = arr[0];
+				var maxIndex = 0;
+				for (var i = 1; i < arr.length; i++) {
+					if (arr[i] > max) {
+						maxIndex = i;
+						max = arr[i];
+					}
+				}
+				return maxIndex;
+			}
+			
+			function calculate(){
+				finalRes[0] = result.count("G")+(result.count("HG")/2) // Gryffindor
+				finalRes[1] = result.count("H")+(result.count("HH")/2) // Hufflepuff
+				finalRes[2] = result.count("R")+(result.count("HR")/2) // Ravenclaw
+				finalRes[3] = result.count("S")+(result.count("HS")/2) // Slytherin
+				total = finalRes[0]+finalRes[1]+finalRes[2]+finalRes[3];
+				var min = 1000000009;
+				for(var i=0;i<finalRes.length;i++)
+				{
+					for(var j=0;j<i;j++){
+						if(Math.abs(finalRes[i]-finalRes[j])<min){
+							min = Math.abs(finalRes[i]-finalRes[j]); 
+						}
+					}
+				}
+				if(min<2){
+					is_close = true;
+				}
+				return indexOfMax(finalRes);
+			}
+			
+			function populateResult(){
+				// Calculate Result
+				var res = calculate();
+				var str;
+				switch(res)
+				{
+					case 0:str="Gryffindor";break;
+					case 1:str="Hufflepuff";break;
+					case 2:str="Ravenclaw";break;
+					case 3:str="Slytherin";break;
+				}
+				var cfig = config[res];
+				
+				document.getElementById("result").innerHTML = "You are in " + str +"!";
+				document.getElementById("crest").src = cfig.SRC;
+				document.getElementById("ResultList").style = "background-color:"+cfig.BGC+";color:"+cfig.FGC+";";
+				if(is_close)
+					document.getElementById("remarks").innerHTML = "Phew! That was a close call. <br/>";
+				else
+					document.getElementById("remarks").innerHTML = "Now that was an easy one. <br/>";
+				document.getElementById("remarks").innerHTML += "Gryffindor<u>&emsp;&emsp;&emsp;&emsp;</u>"+((finalRes[0]/total)*100).toFixed(1)+"%<br/>"+
+															   "Hufflepuff<u>&emsp;&emsp;&emsp;&emsp;</u>"+((finalRes[1]/total)*100).toFixed(1)+"%<br/>"+
+															   "Ravenclaw<u>&emsp;&emsp;&emsp;&emsp;</u>"+((finalRes[2]/total)*100).toFixed(1)+"%<br/>"+
+															   "Slytherin<u>&emsp;&emsp;&emsp;&emsp;</u>"+((finalRes[3]/total)*100).toFixed(1)+"%<br/>";
+				return false;
+			}
+			
+			
+			function populate(){
+				if(index < qCount ) // Questions not complete
+				{
+				    var question = questions[index];
+					var answers  = shuffle(question.answers);
+					document.getElementById('question').innerHTML = question.question;
+					document.getElementById('lbl_one').innerHTML = answers[0].option;
+					document.getElementById('btn_one').value = answers[0].point;
+					document.getElementById('lbl_two').innerHTML = answers[1].option;
+					document.getElementById('btn_two').value = answers[1].point;
+					document.getElementById('lbl_three').innerHTML = answers[2].option;
+					document.getElementById('btn_three').value = answers[2].point;
+					document.getElementById('lbl_four').innerHTML = answers[3].option;
+					document.getElementById('btn_four').value = answers[3].point;
+				}
+			}
+			
+			var JSON_DATA = '{ "questions": [ { "question": "What would you least liked to be called?", "answers": [ {"option":"Stupid", "point":"R-HS"}, {"option":"Spineless","point":"G"}, {"option":"Selfish", "point":"H"}, {"option":"Worthless","point":"S-HG"} ] }, { "question": "Which one would you prefer?", "answers": [ {"option":"Be remembered for your wrong-doings.", "point":"S"}, {"option":"Be forgotten.","point":"H"}, {"option":"Not Exist at all.", "point":"G-HS-HH"}, {"option":"Any of the first two options.","point":"R"} ] }, { "question": "What would you rather be?", "answers": [ {"option":"Hated.", "point":"HS-HG"}, {"option":"Feared.","point":"HS-HG"}, {"option":"Envied.", "point":"R-HG"}, {"option":"Bullied.","point":"H"} ] }, { "question": "You catch your friend cheating at exam. What would you rather do?", "answers": [ {"option":"Cheat with his/her help.", "point":"HS-HG"}, {"option":"Ignore and focus on yourself.","point":"R"}, {"option":"Try to make him understand.", "point":"H"}, {"option":"Notify the Proctor.","point":"HS-HG-HR"} ] }, { "question": "Whom would you like the least?", "answers": [ {"option":"Too Brave.", "point":"R"}, {"option":"Too Smart.","point":"S"}, {"option":"Too Good.", "point":"G"}, {"option":"Too Powerful.","point":"H"} ] }, { "question": "Which would you like the least?", "answers": [ {"option":"To Fail.", "point":"R-HS"}, {"option":"To be the reason of someone else\'s failure.","point":"H-HG"}, {"option":"To be unable to complete.", "point":"HH-HR"}, {"option":"Does not matter as long as you can try again.","point":"HG-HS"} ] }, { "question": "Which proverb is more relateable to you?", "answers": [ {"option":"Practice makes perfect.", "point":"G"}, {"option":"Leave no stone unturned.","point":"S"}, {"option":"Better late than never.", "point":"H"}, {"option":"Look before you leap.","point":"R"} ] }, { "question": "Which is more important to you?", "answers": [ {"option":"To initiate.", "point":"S"}, {"option":"To finish.","point":"R"}, {"option":"To do.", "point":"G"}, {"option":"To retrospect.","point":"H"} ] }, { "question": "Among these, What/Who represents a team the best?", "answers": [ {"option":"The Core Priniple.", "point":"R"}, {"option":"The Members.","point":"H"}, {"option":"The Leader.", "point":"S"}, {"option":"The Job Portfolio.","point":"G"} ] }, { "question": "What fault do you notice in people that bother you the most?", "answers": [ {"option":"Lack of Patience.", "point":"H"}, {"option":"Lack of Planning.","point":"HS-HR"}, {"option":"Lack of Effort.", "point":"G"}, {"option":"Lack of Judgement.","point":"HR-HS"} ] }, { "question": "Among these, which is the worst situation to be in?", "answers": [ {"option":"To be unprepared.", "point":"R"}, {"option":"To run out of time.","point":"H"}, {"option":"To run out of options.", "point":"S"}, {"option":"To lose support of others.","point":"G"} ] }, { "question": "Among these, which is the most overkill action?", "answers": [ {"option":"To Taunt.", "point":"H"}, {"option":"To call-out your opponent.","point":"R"}, {"option":"Not to celebrate after winning.", "point":"G"}, {"option":"To show empathy after winning.","point":"S"} ] }, { "question": "Choose Any", "answers": [ {"option":"S", "point":"HG-HH"}, {"option":"N","point":"HS-HG-HH"}, {"option":"C", "point":"R"}, {"option":"F","point":"HS"} ] }, { "question": "How can your nights be described?", "answers": [ {"option":"Peaceful", "point":"G"}, {"option":"Replenishing","point":"S"}, {"option":"Silent", "point":"R"}, {"option":"Together","point":"H"} ] }, { "question": "How can your mornings be described?", "answers": [ {"option":"Bright", "point":"H"}, {"option":"Pleasant","point":"S"}, {"option":"Busy", "point":"G"}, {"option":"Early","point":"R"} ] } ]}';
+			var config    = JSON.parse('[{ "SRC":"img/g.jpg", "BGC":"#721e1c", "FGC":"#f9ab33"},{ "SRC":"img/h.jpg", "BGC":"#b1913a", "FGC":"#111111"},{ "SRC":"img/r.jpg", "BGC":"#151644", "FGC":"#b7d6ef"},{ "SRC":"img/s.jpg", "BGC":"#4b8646", "FGC":"#111111"}]');
+			var data =  JSON.parse(JSON_DATA);
+			var index = 0;
+			var questions = shuffle(shuffle(data.questions));
+			var qCount    = data.questions.length;
+			var result    = [];
+			var finalRes  = [0,0,0,0];
+			var total     = 0;
+			var is_close  = false;
+			populate();
 
+		</script>
+	</body>
+</html>
